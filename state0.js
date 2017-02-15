@@ -1,7 +1,11 @@
-var demo = {};
+var demo = {}, centerX = 1500/2, centerY = 1000/2,speed=10,bus;
+
 demo.state0 = function(){};
 demo.state0.prototype = {
-    preload: function(){},
+    preload: function(){
+        game.load.image('bus','assets/sprites/bus.png');
+        
+    },
     create: function(){
         game.stage.backgroundColor = "#bf4f5f";
         
@@ -9,8 +13,19 @@ demo.state0.prototype = {
         
         changestateAddEventlistener();
         
+        bus = game.add.sprite(centerX ,centerY ,'bus');
+        
+        bus.anchor.x=0.5;
+        
     },
-    update: function(){}
+    update: function(){
+        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            bus.x += speed;
+        }
+         else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            bus.x -= speed;
+        }
+    }
 };
 
 function changestate(i,statenum){
